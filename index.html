@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name | Art</title>
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; max-width: 900px; margin: 40px auto; padding: 0 16px; line-height: 1.5; }
+    header { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+    nav a { margin-right: 12px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 18px; }
+    .card { border: 1px solid #ddd; border-radius: 14px; padding: 14px; }
+    .muted { opacity: 0.75; }
+    footer { margin-top: 40px; font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Your Name</h1>
+      <p class="muted">Art + marketing visuals. Illustrations, design, and campaigns.</p>
+    </div>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="work">
+    <h2>Selected Work</h2>
+    <div class="grid">
+      <div class="card">
+        <strong>Project Title</strong>
+        <p class="muted">Short description. Medium, client, or vibe.</p>
+      </div>
+      <div class="card">
+        <strong>Project Title</strong>
+        <p class="muted">Short description. Medium, client, or vibe.</p>
+      </div>
+      <div class="card">
+        <strong>Project Title</strong>
+        <p class="muted">Short description. Medium, client, or vibe.</p>
+      </div>
+    </div>
+    <p class="muted">Tip: You can add images later by uploading files and using &lt;img&gt; tags.</p>
+  </section>
+
+  <section id="about">
+    <h2>About</h2>
+    <p>
+      Write 3 to 5 sentences about what you make, who it’s for, and what you’re open to.
+      Include keywords you want to be found for.
+    </p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:you@yourdomain.com">you@yourdomain.com</a> (or your current email)</p>
+    <p>Social: <a href="#">Instagram</a> · <a href="#">Behance</a> · <a href="#">LinkedIn</a></p>
+  </section>
+
+  <footer class="muted">
+    © <span id="year"></span> Your Name
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
