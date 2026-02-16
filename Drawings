@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Art</title>
+  <title>Drawings</title>
   <style>
     .gallery {
       display: grid;
