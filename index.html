@@ -57,16 +57,19 @@
   </script>
   <!-- 18+ Age Gate (simple) -->
 <style>
-  #age-gate {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 999999;
-    padding: 24px;
-  }
+ #age-gate {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999;
+  padding: 24px;
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* Safari */
+}
   #age-gate .box {
     max-width: 520px;
     width: 100%;
