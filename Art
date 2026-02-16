@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Art</title>
+  <style>
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Art</h1>
+
+<div class="gallery">
+  <!-- ART ITEM 1 -->
+  <a href="FULL_RES_IMAGE_URL_HERE">
+    <img src="THUMBNAIL_IMAGE_URL_HERE" alt="Artwork title placeholder">
+  </a>
+
+  <!-- ART ITEM 2 -->
+  <a href="FULL_RES_IMAGE_URL_HERE">
+    <img src="THUMBNAIL_IMAGE_URL_HERE" alt="Artwork title placeholder">
+  </a>
+
+  <!-- ADD MORE ART ITEMS ABOVE THIS LINE -->
+</div>
+
+</body>
+</html>
+🔧 Change later:
+
+THUMBNAIL_IMAGE_URL_HERE
+
+FULL_RES_IMAGE_URL_HERE
