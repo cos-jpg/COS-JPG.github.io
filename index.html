@@ -115,52 +115,64 @@
 </div>
 
 <script>
-  (function () {
-    const COOKIE_NAME = "age_verified_18";
-    const DAYS = 30;
+(function () {
+  const YES_COOKIE = "age_verified_18";
+  const NO_COOKIE  = "age_not_verified";
 
-    function setCookie(name, value, days) {
-      const expires = new Date(Date.now() + days * 864e5).toUTCString();
-      document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax`;
-    }
+  const YES_DAYS = 30;      // remember "yes" for 30 days
+  const NO_MINUTES = 21;    // block after "no" for 21 minutes
 
-    function getCookie(name) {
-      return document.cookie.split("; ").reduce((acc, part) => {
-        const [k, v] = part.split("=");
-        return k === name ? decodeURIComponent(v || "") : acc;
-      }, "");
-    }
+  function setCookieDays(name, value, days) {
+    const expires = new Date(Date.now() + days * 864e5).toUTCString();
+    document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax`;
+  }
 
-    function showGate() {
-      const gate = document.getElementById("age-gate");
-      gate.style.display = "flex";
-      document.body.style.overflow = "hidden";
-      // basic focus management
-      document.getElementById("age-yes").focus();
-    }
+  function setCookieMinutes(name, value, minutes) {
+    const expires = new Date(Date.now() + minutes * 60 * 1000).toUTCString();
+    document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax`;
+  }
 
-    function hideGate() {
-      const gate = document.getElementById("age-gate");
-      gate.style.display = "none";
-      document.body.style.overflow = "";
-    }
+  function getCookie(name) {
+    return document.cookie.split("; ").reduce((acc, part) => {
+      const [k, v] = part.split("=");
+      return k === name ? decodeURIComponent(v || "") : acc;
+    }, "");
+  }
 
-    // If not verified, block the site
-    if (getCookie(COOKIE_NAME) !== "1") {
-      showGate();
-    }
+  function showGate() {
+    const gate = document.getElementById("age-gate");
+    gate.style.display = "flex";
+    document.body.style.overflow = "hidden";
+    document.getElementById("age-yes").focus();
+  }
 
-    document.getElementById("age-yes").addEventListener("click", () => {
-      setCookie(COOKIE_NAME, "1", DAYS);
-      hideGate();
-    });
+  function hideGate() {
+    const gate = document.getElementById("age-gate");
+    gate.style.display = "none";
+    document.body.style.overflow = "";
+  }
 
-    document.getElementById("age-no").addEventListener("click", () => {
-      // simplest behavior: bounce them somewhere safe
-      window.location.href = "https://www.google.com";
-      // or replace with your own URL, e.g. "/under-18.html"
-    });
-  })();
+  // If they previously clicked NO (and it's still within NO_MINUTES), redirect immediately
+  if (getCookie(NO_COOKIE) === "1") {
+    window.location.replace("https://www.google.com"); // change to your under-18 page if you want
+    return;
+  }
+
+  // If not verified YES, show the gate
+  if (getCookie(YES_COOKIE) !== "1") {
+    showGate();
+  }
+
+  document.getElementById("age-yes").addEventListener("click", () => {
+    setCookieDays(YES_COOKIE, "1", YES_DAYS);
+    hideGate();
+  });
+
+  document.getElementById("age-no").addEventListener("click", () => {
+    setCookieMinutes(NO_COOKIE, "1", NO_MINUTES);
+    window.location.replace("https://www.google.com"); // change this too
+  });
+})();
 </script>
 </body>
 </html>
