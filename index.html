@@ -55,5 +55,108 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+  <!-- 18+ Age Gate (simple) -->
+<style>
+  #age-gate {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    padding: 24px;
+  }
+  #age-gate .box {
+    max-width: 520px;
+    width: 100%;
+    background: #111;
+    color: #fff;
+    border-radius: 14px;
+    padding: 22px;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+  }
+  #age-gate h2 { margin: 0 0 10px; font-size: 20px; }
+  #age-gate p { margin: 0 0 16px; line-height: 1.4; opacity: 0.9; }
+  #age-gate .row { display: flex; gap: 10px; flex-wrap: wrap; }
+  #age-gate button, #age-gate a.btn {
+    appearance: none;
+    border: 0;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #age-yes { background: #22c55e; color: #071b0d; }
+  #age-no  { background: #ef4444; color: #1b0707; }
+</style>
+
+<div id="age-gate" role="dialog" aria-modal="true" aria-labelledby="age-title">
+  <div class="box">
+    <h2 id="age-title">Adults only (18+)</h2>
+    <p>This website contains content intended for adults. Please confirm you are at least 18 years old.</p>
+    <div class="row">
+      <button id="age-yes" type="button">I’m 18+</button>
+      <button id="age-no" type="button">I’m under 18</button>
+    </div>
+    <p style="margin-top:14px;font-size:12px;opacity:.7;">
+      Your choice is remembered for 30 days.
+    </p>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const COOKIE_NAME = "age_verified_18";
+    const DAYS = 30;
+
+    function setCookie(name, value, days) {
+      const expires = new Date(Date.now() + days * 864e5).toUTCString();
+      document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax`;
+    }
+
+    function getCookie(name) {
+      return document.cookie.split("; ").reduce((acc, part) => {
+        const [k, v] = part.split("=");
+        return k === name ? decodeURIComponent(v || "") : acc;
+      }, "");
+    }
+
+    function showGate() {
+      const gate = document.getElementById("age-gate");
+      gate.style.display = "flex";
+      document.body.style.overflow = "hidden";
+      // basic focus management
+      document.getElementById("age-yes").focus();
+    }
+
+    function hideGate() {
+      const gate = document.getElementById("age-gate");
+      gate.style.display = "none";
+      document.body.style.overflow = "";
+    }
+
+    // If not verified, block the site
+    if (getCookie(COOKIE_NAME) !== "1") {
+      showGate();
+    }
+
+    document.getElementById("age-yes").addEventListener("click", () => {
+      setCookie(COOKIE_NAME, "1", DAYS);
+      hideGate();
+    });
+
+    document.getElementById("age-no").addEventListener("click", () => {
+      // simplest behavior: bounce them somewhere safe
+      window.location.href = "https://www.google.com";
+      // or replace with your own URL, e.g. "/under-18.html"
+    });
+  })();
+</script>
 </body>
 </html>
