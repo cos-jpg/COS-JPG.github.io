@@ -3,201 +3,417 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-<style>
-  body { font-family: system-ui, Arial, sans-serif; max-width: 900px; margin: 40px auto; padding: 0 16px; line-height: 1.5; }
-  header { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
-  nav a { margin-right: 12px; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 18px; }
-  .card { border: 1px solid #ddd; border-radius: 14px; padding: 14px; }
 
-  /* Updated image thumbnail sizing */
-  .card img {
-    max-width: 450px;      /* Limit width to 450px */
-    max-height: 600px;     /* Limit height to 600px */
-    width: 100%;           /* Ensure the image scales responsively */
-    height: auto;          /* Keep the aspect ratio */
-    object-fit: cover;     /* Ensure the image fills the space without distortion */
-  }
+  <style>
+    :root{
+      color-scheme: dark;
 
-  .muted { opacity: 0.75; }
-  footer { margin-top: 40px; font-size: 0.95rem; }
-</style>
+      --bg: #0b0f14;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.09);
+      --border: rgba(255,255,255,.12);
+
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.68);
+
+      --accent: #a78bfa;     /* purple */
+      --accent2: #22c55e;    /* green */
+      --danger: #ef4444;
+
+      --radius: 16px;
+      --shadow: 0 14px 45px rgba(0,0,0,.45);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.5;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 700px at 20% -10%, rgba(167,139,250,.22), transparent 60%),
+        radial-gradient(900px 600px at 100% 10%, rgba(34,197,94,.14), transparent 55%),
+        radial-gradient(900px 700px at 60% 110%, rgba(239,68,68,.10), transparent 55%),
+        var(--bg);
+    }
+
+    .wrap {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 16px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    nav a {
+      margin-right: 12px;
+      text-decoration: none;
+      color: var(--text);
+      opacity: .9;
+      padding: 8px 10px;
+      border-radius: 10px;
+      background: transparent;
+      transition: transform .12s ease, background .12s ease, opacity .12s ease;
+    }
+    nav a:hover {
+      background: rgba(255,255,255,.06);
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+
+    a { color: var(--accent); }
+    a:hover { opacity: .95; }
+
+    .muted { color: var(--muted); }
+
+    .hero {
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 6px);
+      padding: 18px 18px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      margin-bottom: 16px;
+    }
+
+    .hero h1{
+      font-size: 26px;
+      margin: 0 0 6px;
+      letter-spacing: .2px;
+    }
+    .hero p{ margin: 0; }
+
+    .pill-row{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .pill{
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 13px;
+      opacity: .92;
+    }
+    .pill strong{ font-weight: 700; }
+    .pill:hover{ opacity: 1; }
+
+    section {
+      margin-top: 22px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.28);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    section h2{
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing: .2px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      background: rgba(255,255,255,.05);
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(167,139,250,.35);
+      background: rgba(255,255,255,.07);
+    }
+
+    /* Updated image thumbnail sizing */
+    .card img {
+      max-width: 450px;      /* Limit width to 450px */
+      max-height: 600px;     /* Limit height to 600px */
+      width: 100%;           /* Ensure the image scales responsively */
+      height: auto;          /* Keep the aspect ratio */
+      object-fit: cover;     /* Ensure the image fills the space without distortion */
+      display: block;
+    }
+
+    .card a { display: block; }
+
+    .status {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .badge{
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+    }
+    .badge.wip { border-color: rgba(167,139,250,.35); }
+    .badge.live { border-color: rgba(34,197,94,.35); }
+
+    footer {
+      margin-top: 26px;
+      font-size: 0.95rem;
+      color: var(--muted);
+      text-align: center;
+      opacity: .9;
+    }
+  </style>
 </head>
+
 <body>
- <section id="work">
-      <div class="grid">
-      <div class="card">
-        <a href="https://amdi218.com/drawings/">
-        <img src="https://i.ibb.co/0xC7sjs/MD.png" alt="Drawings">
-        </a>
+  <div class="wrap">
+    <header>
+      <nav>
+        <a href="/about" target="_blank">About</a>
+        <a href="/contact" target="_blank">Contact</a>
+      </nav>
+    </header>
+
+    <!-- Re-added "Welcome / W.I.P / etc." area -->
+    <div class="hero" id="top">
+      <h1>Welcome</h1>
+      <p class="muted">Drawings, animations, games, and whatever else crawls out of the sketchbook.</p>
+
+      <div class="status">
+        <span class="badge wip">W.I.P: site polish + new uploads</span>
+        <span class="badge live">Live: drawings / animations / games</span>
       </div>
-      <div class="card">
-        <a href="/animations">
-        <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjgwZ2pjNG1vMmRuZDB5cTExOGxpZ2tuMGJuMWU2ZDhrcXdna2M4ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WTEQgDLQy831uzitmm/giphy.gif" alt="Animations">
-        </a>
+
+      <div class="pill-row">
+        <a class="pill" href="#News"><strong>🗞</strong> News</a>
+        <a class="pill" href="#work"><strong>🖼</strong> Work</a>
+        <a class="pill" href="#contact"><strong>📬</strong> Contact</a>
       </div>
-      <div class="card">
-        <a href="/gamesx">
-        <img src="https://i.ibb.co/m5NTnSqF/Comics.png" alt="Games">
-        </a>
     </div>
-  </section>
-  
-  <footer class="muted">
-    © <span id="year"></span> Amdi218
-  </footer>
+
+    <section id="News">
+      <h2>News</h2>
+      <p class="muted">W.I.P</p>
+      <!-- Add more later:
+      <ul>
+        <li>02/24/2026 - Example update</li>
+      </ul>
+      -->
+    </section>
+
+    <section id="work">
+      <h2>Work</h2>
+      <div class="grid">
+        <div class="card">
+          <a href="https://amdi218.com/drawings/">
+            <img src="https://i.ibb.co/0xC7sjs/MD.png" alt="Drawings">
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="/animations">
+            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjgwZ2pjNG1vMmRuZDB5cTExOGxpZ2tuMGJuMWU2ZDhrcXdna2M4ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WTEQgDLQy831uzitmm/giphy.gif" alt="Animations">
+          </a>
+        </div>
+
+        <div class="card">
+          <a href="/gamesx">
+            <img src="https://i.ibb.co/m5NTnSqF/Comics.png" alt="Games">
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:amdi@amdi218.com">amdi@amdi218.com</a></p>
+      <p>Social: <a href="#">Tpa8_11</a> · <a href="Tgcos1">x</a> · <a href="https://www.patreon.com/tpa8011">Patreon</a></p>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Your Name
+    </footer>
+  </div>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+
   <!-- 18+ Age Gate (simple) -->
-<style>
-  #age-gate {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 999999;
-  padding: 24px;
+  <style>
+    #age-gate {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999999;
+      padding: 24px;
 
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px); /* Safari */
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
 
-  border: 4px solid #000;
-  box-sizing: border-box;
-  border-radius: 24px;
-}
-  #age-gate img {
-  max-width: 260px;
-  width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto 16px;
-}
-  #age-gate .box {
-  max-width: 520px;
-  width: 100%;
-  background: #2a0f3f;
-  color: #fff;
-  border: 2px solid #000; /* ← added */
-  border-radius: 14px;
-  padding: 22px;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  box-shadow: 0 10px 35px rgba(0,0,0,0.35);
-}
-  #age-gate h2 { margin: 0 0 10px; font-size: 20px; }
-  #age-gate p { margin: 0 0 16px; line-height: 1.4; opacity: 0.9; }
-  #age-gate .row { display: flex; gap: 10px; flex-wrap: wrap; }
-  #age-gate button, #age-gate a.btn {
-    appearance: none;
-    border: 0;
-    border-radius: 10px;
-    padding: 10px 14px;
-    font-weight: 600;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-  #age-yes { background: #22c55e; color: #071b0d; }
-  #age-no  { background: #ef4444; color: #1b0707; }
-#age-gate::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  border-radius: 24px;
-  background: radial-gradient(
-    circle at center,
-    rgba(200, 170, 40, 0.18),
-    transparent 70%
-  );
-  animation: pulse 5s ease-in-out infinite;
-}
+      border: 4px solid #000;
+      box-sizing: border-box;
+      border-radius: 24px;
+    }
+    #age-gate img {
+      max-width: 260px;
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto 16px;
+      border-radius: 12px;
+    }
+    #age-gate .box {
+      max-width: 520px;
+      width: 100%;
+      background: #2a0f3f;
+      color: #fff;
+      border: 2px solid #000;
+      border-radius: 14px;
+      padding: 22px;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+    }
+    #age-gate h2 { margin: 0 0 10px; font-size: 20px; }
+    #age-gate p { margin: 0 0 16px; line-height: 1.4; opacity: 0.9; }
+    #age-gate .row { display: flex; gap: 10px; flex-wrap: wrap; }
+    #age-gate button, #age-gate a.btn {
+      appearance: none;
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #age-yes { background: #22c55e; color: #071b0d; }
+    #age-no  { background: #ef4444; color: #1b0707; }
+    #age-gate::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: 24px;
+      background: radial-gradient(
+        circle at center,
+        rgba(200, 170, 40, 0.18),
+        transparent 70%
+      );
+      animation: pulse 5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50%      { opacity: 1; }
+    }
+  </style>
 
-@keyframes pulse {
-  0%, 100% { opacity: 0.6; }
-  50%      { opacity: 1; }
-}
-</style>
-
-<div id="age-gate" role="dialog" aria-modal="true" aria-labelledby="age-title">
-  <div class="box">
-    <h2 id="age-title">Adults only (18+)</h2>
-    <p>This website contains content intended for adults. Please confirm you are at least 18 years old.</p>
-     <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGUwamN2ZnhlcDRvcHNoNmVlM21yaHh5cXhqdTljM2ZzZXQ0YzF3dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/uuWzRLr6trSmiq6w2M/giphy.gif" alt="18+ only">
-    <div class="row">
-      <button id="age-yes" type="button">I’m over 18</button>
-      <button id="age-no" type="button">I’m under 18</button>
+  <div id="age-gate" role="dialog" aria-modal="true" aria-labelledby="age-title">
+    <div class="box">
+      <h2 id="age-title">Adults only (18+)</h2>
+      <p>This website contains content intended for adults. Please confirm you are at least 18 years old.</p>
+      <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGUwamN2ZnhlcDRvcHNoNmVlM21yaHh5cXhqdTljM2ZzZXQ0YzF3dyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/uuWzRLr6trSmiq6w2M/giphy.gif" alt="18+ only">
+      <div class="row">
+        <button id="age-yes" type="button">I’m over 18</button>
+        <button id="age-no" type="button">I’m under 18</button>
+      </div>
+      <p style="margin-top:14px;font-size:12px;opacity:.7;"></p>
     </div>
-    <p style="margin-top:14px;font-size:12px;opacity:.7;">
-      
-    </p>
   </div>
-</div>
 
-<script>
-(function () {
-  const YES_COOKIE = "age_verified_18";
-  const NO_COOKIE  = "age_not_verified";
+  <script>
+  (function () {
+    const YES_COOKIE = "age_verified_18";
+    const NO_COOKIE  = "age_not_verified";
 
-  const YES_DAYS = 30;      // remember "yes" for 30 days
-  const NO_MINUTES = 21;    // block after "no" for 21 minutes
+    const YES_DAYS = 30;      // remember "yes" for 30 days
+    const NO_MINUTES = 21;    // block after "no" for 21 minutes
 
-  function setCookieDays(name, value, days) {
-    const expires = new Date(Date.now() + days * 864e5).toUTCString();
-    document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax`;
-  }
+    function setCookieDays(name, value, days) {
+      const expires = new Date(Date.now() + days * 864e5).toUTCString();
+      document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax`;
+    }
 
-  function setCookieMinutes(name, value, minutes) {
-    const expires = new Date(Date.now() + minutes * 60 * 1000).toUTCString();
-    document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax`;
-  }
+    function setCookieMinutes(name, value, minutes) {
+      const expires = new Date(Date.now() + minutes * 60 * 1000).toUTCString();
+      document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax`;
+    }
 
-  function getCookie(name) {
-    return document.cookie.split("; ").reduce((acc, part) => {
-      const [k, v] = part.split("=");
-      return k === name ? decodeURIComponent(v || "") : acc;
-    }, "");
-  }
+    function getCookie(name) {
+      return document.cookie.split("; ").reduce((acc, part) => {
+        const [k, v] = part.split("=");
+        return k === name ? decodeURIComponent(v || "") : acc;
+      }, "");
+    }
 
-  function showGate() {
-    const gate = document.getElementById("age-gate");
-    gate.style.display = "flex";
-    document.body.style.overflow = "hidden";
-    document.getElementById("age-yes").focus();
-  }
+    function showGate() {
+      const gate = document.getElementById("age-gate");
+      gate.style.display = "flex";
+      document.body.style.overflow = "hidden";
+      document.getElementById("age-yes").focus();
+    }
 
-  function hideGate() {
-    const gate = document.getElementById("age-gate");
-    gate.style.display = "none";
-    document.body.style.overflow = "";
-  }
+    function hideGate() {
+      const gate = document.getElementById("age-gate");
+      gate.style.display = "none";
+      document.body.style.overflow = "";
+    }
 
-  // If they previously clicked NO (and it's still within NO_MINUTES), redirect immediately
-  if (getCookie(NO_COOKIE) === "1") {
-    window.location.replace("https://www.google.com"); // change to your under-18 page if you want
-    return;
-  }
+    // If they previously clicked NO (and it's still within NO_MINUTES), redirect immediately
+    if (getCookie(NO_COOKIE) === "1") {
+      window.location.replace("https://www.google.com"); // change to your under-18 page if you want
+      return;
+    }
 
-  // If not verified YES, show the gate
-  if (getCookie(YES_COOKIE) !== "1") {
-    showGate();
-  }
+    // If not verified YES, show the gate
+    if (getCookie(YES_COOKIE) !== "1") {
+      showGate();
+    }
 
-  document.getElementById("age-yes").addEventListener("click", () => {
-    setCookieDays(YES_COOKIE, "1", YES_DAYS);
-    hideGate();
-  });
+    document.getElementById("age-yes").addEventListener("click", () => {
+      setCookieDays(YES_COOKIE, "1", YES_DAYS);
+      hideGate();
+    });
 
-  document.getElementById("age-no").addEventListener("click", () => {
-    setCookieMinutes(NO_COOKIE, "1", NO_MINUTES);
-    window.location.replace("https://www.google.com"); // change this too
-  });
-})();
+    document.getElementById("age-no").addEventListener("click", () => {
+      setCookieMinutes(NO_COOKIE, "1", NO_MINUTES);
+      window.location.replace("https://www.google.com"); // change this too
+    });
+  })();
+  </script>
+</body>
+</html>
 </script>
 </body>
 </html>
