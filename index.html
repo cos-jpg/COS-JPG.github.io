@@ -9,284 +9,260 @@
       color-scheme: dark;
 
       --bg: #0b0f14;
-      --panel: rgba(255,255,255,.06);
-      --panel2: rgba(255,255,255,.09);
+      --bg-soft: #111723;
+      --panel: rgba(255,255,255,.05);
+      --panel-strong: rgba(255,255,255,.08);
       --border: rgba(255,255,255,.12);
 
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.68);
+      --text: rgba(255,255,255,.94);
+      --muted: rgba(255,255,255,.70);
 
-      --accent: #a78bfa;     /* purple */
-      --accent2: #22c55e;    /* green */
+      --accent: #a78bfa;
+      --accent2: #22c55e;
       --danger: #ef4444;
 
-      --radius: 16px;
-      --shadow: 0 14px 45px rgba(0,0,0,.45);
+      --radius: 18px;
+      --shadow: 0 16px 40px rgba(0,0,0,.35);
+      --max-width: 860px;
     }
 
     * { box-sizing: border-box; }
-    html, body { height: 100%; }
-
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      line-height: 1.5;
+      line-height: 1.6;
       color: var(--text);
       background:
-        radial-gradient(1200px 700px at 20% -10%, rgba(167,139,250,.22), transparent 60%),
-        radial-gradient(900px 600px at 100% 10%, rgba(34,197,94,.14), transparent 55%),
-        radial-gradient(900px 700px at 60% 110%, rgba(239,68,68,.10), transparent 55%),
+        radial-gradient(1200px 700px at 20% -10%, rgba(167,139,250,.18), transparent 60%),
+        radial-gradient(1000px 600px at 100% 10%, rgba(34,197,94,.10), transparent 55%),
+        radial-gradient(900px 700px at 50% 120%, rgba(239,68,68,.06), transparent 55%),
         var(--bg);
     }
 
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      opacity: .95;
+    }
+
     .wrap {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 16px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 28px 16px 48px;
     }
 
     header {
+      margin-bottom: 20px;
+    }
+
+    nav {
       display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 16px;
+      gap: 10px;
       flex-wrap: wrap;
-      margin-bottom: 18px;
-    }
-
-    nav a {
-      margin-right: 12px;
-      text-decoration: none;
-      color: var(--text);
-      opacity: .9;
-      padding: 8px 10px;
-      border-radius: 10px;
-      background: transparent;
-      transition: transform .12s ease, background .12s ease, opacity .12s ease;
-    }
-    nav a:hover {
-      background: rgba(255,255,255,.06);
-      opacity: 1;
-      transform: translateY(-1px);
-    }
-
-    a { color: var(--accent); }
-    a:hover { opacity: .95; }
-
-    .muted { color: var(--muted); }
-
-    .hero {
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
-      border: 1px solid var(--border);
-      border-radius: calc(var(--radius) + 6px);
-      padding: 18px 18px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
       margin-bottom: 16px;
     }
 
-    .hero h1{
-      font-size: 26px;
-      margin: 0 0 6px;
-      letter-spacing: .2px;
-    }
-    .hero p{ margin: 0; }
-
-    .pill-row{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 12px;
-    }
-    .pill{
-      display: inline-flex;
-      gap: 8px;
-      align-items: center;
-      padding: 8px 10px;
+    nav a {
+      color: var(--text);
+      padding: 9px 14px;
       border-radius: 999px;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,.05);
-      color: var(--text);
-      text-decoration: none;
-      font-size: 13px;
-      opacity: .92;
-    }
-    .pill strong{ font-weight: 700; }
-    .pill:hover{ opacity: 1; }
-
-    section {
-      margin-top: 22px;
       background: rgba(255,255,255,.04);
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.07);
+      border-color: rgba(167,139,250,.32);
+    }
+
+    .hero,
+    section {
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.04));
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 14px 14px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.28);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .hero {
+      padding: 26px 22px;
+    }
+
+    .hero h1{
+      margin: 0 0 8px;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      line-height: 1.05;
+      letter-spacing: .2px;
+    }
+
+    .hero p{
+      margin: 0;
+      color: var(--muted);
+      max-width: 60ch;
+      font-size: 1rem;
+    }
+
+    section {
+      margin-top: 18px;
+      padding: 18px;
     }
 
     section h2{
-      margin: 0 0 10px;
-      font-size: 18px;
+      margin: 0 0 14px;
+      font-size: 1.1rem;
       letter-spacing: .2px;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 14px;
-      margin-top: 10px;
-    }
+    .muted { color: var(--muted); }
 
-    .card {
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      overflow: hidden;
-      background: rgba(255,255,255,.05);
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-    }
-    .card:hover{
-      transform: translateY(-2px);
-      border-color: rgba(167,139,250,.35);
-      background: rgba(255,255,255,.07);
-    }
-
-    /* Updated image thumbnail sizing */
-    .card img {
-      max-width: 450px;      /* Limit width to 450px */
-      max-height: 600px;     /* Limit height to 600px */
-      width: 100%;           /* Ensure the image scales responsively */
-      height: auto;          /* Keep the aspect ratio */
-      object-fit: cover;     /* Ensure the image fills the space without distortion */
-      display: block;
-    }
-
-    .card a { display: block; }
-
-    .status {
+    .feature {
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 10px;
+      justify-content: center;
+      margin: 18px 0 22px;
     }
-    .badge{
-      font-size: 12px;
+
+    .feature-card {
+      width: min(100%, 580px);
+      text-align: center;
+      background: linear-gradient(180deg, rgba(167,139,250,.12), rgba(255,255,255,.04));
+      border: 1px solid rgba(167,139,250,.28);
+      border-radius: 20px;
+      padding: 24px 20px;
+      box-shadow: 0 14px 34px rgba(0,0,0,.28);
+    }
+
+    .feature-label {
+      display: inline-block;
+      margin-bottom: 10px;
       padding: 6px 10px;
       border-radius: 999px;
-      border: 1px solid var(--border);
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
       background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .feature-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.5rem;
+      line-height: 1.15;
+    }
+
+    .feature-card p {
+      margin: 0 0 16px;
+      color: var(--muted);
+    }
+
+    .feature-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 220px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      color: white;
+      background: linear-gradient(180deg, rgba(167,139,250,.38), rgba(167,139,250,.22));
+      border: 1px solid rgba(167,139,250,.42);
+      transition: transform .12s ease, filter .12s ease;
+    }
+
+    .feature-link:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+      opacity: 1;
+    }
+
+    .news-entry {
+      max-width: 68ch;
+      margin: 0 auto;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .news-entry + .news-entry {
+      margin-top: 18px;
+      padding-top: 18px;
+    }
+
+    .news-date {
+      display: inline-block;
+      margin-bottom: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .news-entry p {
+      margin: 0 0 10px;
+    }
+
+    .contact-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .contact-card strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: .95rem;
+    }
+
+    .socials {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .socials a {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
       color: var(--text);
     }
-    .badge.wip { border-color: rgba(167,139,250,.35); }
-    .badge.live { border-color: rgba(34,197,94,.35); }
+
+    .donation {
+      text-align: center;
+    }
+
+    .donation img {
+      max-width: 180px;
+      width: 100%;
+      height: auto;
+      display: inline-block;
+      border-radius: 10px;
+    }
 
     footer {
       margin-top: 26px;
-      font-size: 0.95rem;
+      font-size: .95rem;
       color: var(--muted);
       text-align: center;
       opacity: .9;
     }
-  </style>
-</head>
 
-<body>
-      <div class="hero" id="top">
-      <h1>Welcome</h1>
-      <p class="muted">Bad layout isn't it.</p>
-        
-      </div>
-
-      <div class="pill-row">
-        <a class="pill" href="#News"><strong>🗞</strong> News</a>
-        <a class="pill" href="#work"><strong>🖼</strong> Work</a>
-        <a class="pill" href="#contact"><strong>📬</strong> Contact</a>
-      </div>
-    </div>
-
-  <section id="News">
-  <h2>News</h2>
-
-  <p class="muted">
- 3/19/2026
-    Almost got all the bugs worked out of the player controller here. Moving on to health and resource systems, then enemy ai systems. Then level design, i think.
-Seems like adding one thing breaks another or inspires more additions. Still, sitting down and focusing, things manage to move along just fine. Updating here 
-is it's own thing however. Ideally when the above is finished I'll be able to start actual level designs and then hopefully move to more regular updates. Get 
-all systems in place new level every week or so. That was the IDEA, we'll see how it actually goes. In the mean time, some concept art. Oh, how would you feel about
-otherwise paid art, as a completion reward? Screencap while you can, if you like it :). Expect next update to be out a bit as well, a few other things I
-might like to finish first. Oh, somewhere along the line i forgot, even finishing this much is only 1/2 the engine..maybe 1/3. A lot of things are still up in the air with this.
-    <a href="https://amdi218.com/games">In Progress.</a>
-    3/??/2026 
-    One thing I'm working on. This is all the digital equivalent of a napkin sketch. I'm calling it a "test environment" for now. 
-                                                  Ctrl, Shift,Space, and F.
-Getting this much done and uploaded is an accomplishment for me simply for the fact that I know HOW to actually do it, should be less problematic in the future.
-Speaking of future, next major goals are...well make it an actual GAME, not just place holder stuff. Stop back by sometime, you might be surprised.
-
-
-  <!-- Add more later:
-  <ul>
-    <li>02/24/2026 - Example update</li>
-  </ul>
-  -->
-</section>
-
-    <section id="work">
-      <h2>Work</h2>
-      <div class="grid">
-        <div class="card">
-          <a href="https://amdi218.com/drawings/">
-            <img src="" alt="">
-          </a>
-        </div>
-
-        <div class="card">
-          <a href="/animations">
-            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjgwZ2pjNG1vMmRuZDB5cTExOGxpZ2tuMGJuMWU2ZDhrcXdna2M4ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WTEQgDLQy831uzitmm/giphy.gif" alt="Animations">
-          </a>
-        </div>
-
-        <div class="card">
-          <a href="/gamesx">
-            <img src="" alt="">
-          </a>
-        </div>
-      </div>
-    </section>
-
-   <section id="contact">
-  <h2>Contact</h2>
-
-  <p>
-    Email:
-    <a href="mailto:amdi218@yahoo.com">amdi218@yahoo.com</a>
-  </p>
-
-  <p>
-    Social:
-    <a href="#">Tpa8_11</a> ·
-    <a href="https://x.com/Tgcos1">x</a> ·
-    <a href="https://www.patreon.com/tpa8011">Patreon</a>
-  </p>
-
-  <p>
-    <a href="https://www.amdi218.com/donation">
-      <img src="https://i.ibb.co/CxHpBKY/Donations-sm.gif" alt="Donations">
-    </a>
-  </p>
-</section>
-
-    <footer>
-      © <span id="year"></span> amdi218
-    </footer>
-  </div>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-
-  <!-- 18+ Age Gate (simple) -->
-  <style>
+    /* 18+ Age Gate */
     #age-gate {
       position: fixed;
       inset: 0;
@@ -296,14 +272,42 @@ Speaking of future, next major goals are...well make it an actual GAME, not just
       justify-content: center;
       z-index: 999999;
       padding: 24px;
-
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
-
-      border: 4px solid #000;
-      box-sizing: border-box;
-      border-radius: 24px;
     }
+
+    #age-gate .box {
+      position: relative;
+      max-width: 520px;
+      width: 100%;
+      background: #2a0f3f;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+      overflow: hidden;
+    }
+
+    #age-gate .box::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at center, rgba(200,170,40,0.18), transparent 70%);
+      animation: pulse 5s ease-in-out infinite;
+    }
+
+    #age-gate h2,
+    #age-gate p,
+    #age-gate img,
+    #age-gate .row {
+      position: relative;
+    }
+
+    #age-gate h2 { margin: 0 0 10px; font-size: 20px; }
+    #age-gate p { margin: 0 0 16px; line-height: 1.4; opacity: 0.92; }
+
     #age-gate img {
       max-width: 260px;
       width: 100%;
@@ -312,52 +316,150 @@ Speaking of future, next major goals are...well make it an actual GAME, not just
       margin: 0 auto 16px;
       border-radius: 12px;
     }
-    #age-gate .box {
-      max-width: 520px;
-      width: 100%;
-      background: #2a0f3f;
-      color: #fff;
-      border: 2px solid #000;
-      border-radius: 14px;
-      padding: 22px;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+
+    #age-gate .row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
     }
-    #age-gate h2 { margin: 0 0 10px; font-size: 20px; }
-    #age-gate p { margin: 0 0 16px; line-height: 1.4; opacity: 0.9; }
-    #age-gate .row { display: flex; gap: 10px; flex-wrap: wrap; }
-    #age-gate button, #age-gate a.btn {
+
+    #age-gate button {
       appearance: none;
       border: 0;
       border-radius: 10px;
       padding: 10px 14px;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
     }
+
     #age-yes { background: #22c55e; color: #071b0d; }
     #age-no  { background: #ef4444; color: #1b0707; }
-    #age-gate::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      border-radius: 24px;
-      background: radial-gradient(
-        circle at center,
-        rgba(200, 170, 40, 0.18),
-        transparent 70%
-      );
-      animation: pulse 5s ease-in-out infinite;
-    }
+
     @keyframes pulse {
       0%, 100% { opacity: 0.6; }
-      50%      { opacity: 1; }
+      50% { opacity: 1; }
+    }
+
+    @media (max-width: 640px) {
+      .hero,
+      section {
+        padding: 16px;
+      }
+
+      .feature-card {
+        padding: 20px 16px;
+      }
+
+      .feature-link {
+        width: 100%;
+      }
     }
   </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <nav>
+        <a href="#top">Top</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="hero" id="top">
+        <h1>Welcome</h1>
+        <p class="muted">A rough build, but moving. This place is part dev log, part sketchbook, part signal flare.</p>
+      </div>
+    </header>
+
+    <section id="news">
+      <h2>News</h2>
+
+      <div class="feature">
+        <div class="feature-card">
+          <div class="feature-label">Featured Project</div>
+          <h3>I had a dream about you</h3>
+          <p>Current playable test environment. Best on desktop or laptop.</p>
+          <a class="feature-link" href="https://amdi218.com/games">Launch the game</a>
+        </div>
+      </div>
+
+      <article class="news-entry">
+        <div class="news-date">March 19, 2026</div>
+        <p>
+          Almost got all the bugs worked out of the player controller. Next up are
+          health and resource systems, then enemy AI, then level design.
+        </p>
+        <p>
+          It feels like adding one thing either breaks another or spawns three more ideas,
+          but sitting down and focusing still gets things moving. Updating here is its own
+          separate beast.
+        </p>
+        <p>
+          The plan, ideally, is to get all the systems in place and then start building out
+          actual levels more regularly. Maybe one new level every week or so. That was the
+          idea anyway. We’ll see what reality has to say about it.
+        </p>
+        <p>
+          In the meantime, there’s some concept art in the air, and I’ve been thinking about
+          whether otherwise paid art could work as a completion reward. Screenshot it while
+          you can if you like it.
+        </p>
+        <p>
+          Also, somewhere along the line I forgot that even finishing this much is probably
+          only half the engine. Maybe a third. A lot is still up in the air.
+        </p>
+      </article>
+
+      <article class="news-entry">
+        <div class="news-date">March 2026</div>
+        <p>
+          This started as a test environment, basically the digital equivalent of a napkin sketch.
+          Controls right now are <strong>Ctrl</strong>, <strong>Shift</strong>, <strong>Space</strong>,
+          and <strong>F</strong>.
+        </p>
+        <p>
+          Getting this much done and uploaded is a win just because now I know how to actually do it.
+          Future updates should be less of a wrestling match.
+        </p>
+        <p>
+          Next major goal is simple: make it an actual game instead of placeholder pieces.
+          Stop back by sometime. It might look pretty different.
+        </p>
+      </article>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <strong>Email</strong>
+          <a href="mailto:amdi218@yahoo.com">amdi218@yahoo.com</a>
+        </div>
+
+        <div class="contact-card">
+          <strong>Social</strong>
+          <div class="socials">
+            <a href="#">Tpa8_11</a>
+            <a href="https://x.com/Tgcos1">X</a>
+            <a href="https://www.patreon.com/tpa8011">Patreon</a>
+          </div>
+        </div>
+
+        <div class="contact-card donation">
+          <strong>Support</strong>
+          <a href="https://www.amdi218.com/donation">
+            <img src="https://i.ibb.co/CxHpBKY/Donations-sm.gif" alt="Donations">
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> amdi218
+    </footer>
+  </div>
 
   <div id="age-gate" role="dialog" aria-modal="true" aria-labelledby="age-title">
     <div class="box">
@@ -368,72 +470,68 @@ Speaking of future, next major goals are...well make it an actual GAME, not just
         <button id="age-yes" type="button">I’m over 18</button>
         <button id="age-no" type="button">I’m under 18</button>
       </div>
-      <p style="margin-top:14px;font-size:12px;opacity:.7;"></p>
     </div>
   </div>
 
   <script>
-  (function () {
-    const YES_COOKIE = "age_verified_18";
-    const NO_COOKIE  = "age_not_verified";
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    const YES_DAYS = 30;      // remember "yes" for 30 days
-    const NO_MINUTES = 21;    // block after "no" for 21 minutes
+    (function () {
+      const YES_COOKIE = "age_verified_18";
+      const NO_COOKIE  = "age_not_verified";
 
-    function setCookieDays(name, value, days) {
-      const expires = new Date(Date.now() + days * 864e5).toUTCString();
-      document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax`;
-    }
+      const YES_DAYS = 30;
+      const NO_MINUTES = 21;
 
-    function setCookieMinutes(name, value, minutes) {
-      const expires = new Date(Date.now() + minutes * 60 * 1000).toUTCString();
-      document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax`;
-    }
+      function setCookieDays(name, value, days) {
+        const expires = new Date(Date.now() + days * 864e5).toUTCString();
+        document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax`;
+      }
 
-    function getCookie(name) {
-      return document.cookie.split("; ").reduce((acc, part) => {
-        const [k, v] = part.split("=");
-        return k === name ? decodeURIComponent(v || "") : acc;
-      }, "");
-    }
+      function setCookieMinutes(name, value, minutes) {
+        const expires = new Date(Date.now() + minutes * 60 * 1000).toUTCString();
+        document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/; SameSite=Lax`;
+      }
 
-    function showGate() {
-      const gate = document.getElementById("age-gate");
-      gate.style.display = "flex";
-      document.body.style.overflow = "hidden";
-      document.getElementById("age-yes").focus();
-    }
+      function getCookie(name) {
+        return document.cookie.split("; ").reduce((acc, part) => {
+          const [k, v] = part.split("=");
+          return k === name ? decodeURIComponent(v || "") : acc;
+        }, "");
+      }
 
-    function hideGate() {
-      const gate = document.getElementById("age-gate");
-      gate.style.display = "none";
-      document.body.style.overflow = "";
-    }
+      function showGate() {
+        const gate = document.getElementById("age-gate");
+        gate.style.display = "flex";
+        document.body.style.overflow = "hidden";
+        document.getElementById("age-yes").focus();
+      }
 
-    // If they previously clicked NO (and it's still within NO_MINUTES), redirect immediately
-    if (getCookie(NO_COOKIE) === "1") {
-      window.location.replace("https://www.google.com"); // change to your under-18 page if you want
-      return;
-    }
+      function hideGate() {
+        const gate = document.getElementById("age-gate");
+        gate.style.display = "none";
+        document.body.style.overflow = "";
+      }
 
-    // If not verified YES, show the gate
-    if (getCookie(YES_COOKIE) !== "1") {
-      showGate();
-    }
+      if (getCookie(NO_COOKIE) === "1") {
+        window.location.replace("https://www.google.com");
+        return;
+      }
 
-    document.getElementById("age-yes").addEventListener("click", () => {
-      setCookieDays(YES_COOKIE, "1", YES_DAYS);
-      hideGate();
-    });
+      if (getCookie(YES_COOKIE) !== "1") {
+        showGate();
+      }
 
-    document.getElementById("age-no").addEventListener("click", () => {
-      setCookieMinutes(NO_COOKIE, "1", NO_MINUTES);
-      window.location.replace("https://www.google.com"); // change this too
-    });
-  })();
+      document.getElementById("age-yes").addEventListener("click", () => {
+        setCookieDays(YES_COOKIE, "1", YES_DAYS);
+        hideGate();
+      });
+
+      document.getElementById("age-no").addEventListener("click", () => {
+        setCookieMinutes(NO_COOKIE, "1", NO_MINUTES);
+        window.location.replace("https://www.google.com");
+      });
+    })();
   </script>
-</body>
-</html>
-</script>
 </body>
 </html>
