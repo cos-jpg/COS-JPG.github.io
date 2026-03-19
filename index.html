@@ -185,9 +185,8 @@
       border-top: 1px solid rgba(255,255,255,.08);
     }
 
-    .news-entry + .news-entry {
-      margin-top: 18px;
-      padding-top: 18px;
+    .news-entry p {
+      margin: 0 0 10px;
     }
 
     .news-date {
@@ -199,8 +198,44 @@
       text-transform: uppercase;
     }
 
-    .news-entry p {
-      margin: 0 0 10px;
+    .news-archive {
+      max-width: 68ch;
+      margin: 18px auto 0;
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 16px;
+    }
+
+    .news-archive summary {
+      cursor: pointer;
+      color: var(--accent);
+      font-weight: 600;
+      list-style: none;
+      margin-bottom: 14px;
+      user-select: none;
+    }
+
+    .news-archive summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .news-archive summary::after {
+      content: " +";
+      color: var(--muted);
+    }
+
+    .news-archive[open] summary::after {
+      content: " −";
+    }
+
+    .news-archive .news-entry {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .news-archive .news-entry + .news-entry {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.08);
     }
 
     .contact-grid {
@@ -378,7 +413,7 @@
 
       <div class="feature">
         <div class="feature-card">
-          <div class="feature-label">Featured Project</div>
+          <div class="feature-label">Game</div>
           <p>Playable test environment. Best on desktop or laptop.</p>
           <a class="feature-link" href="https://amdi218.com/games">Launch</a>
         </div>
@@ -411,22 +446,26 @@
         </p>
       </article>
 
-      <article class="news-entry">
-        <div class="news-date">March 2026</div>
-        <p>
-          This started as a test environment, basically the digital equivalent of a napkin sketch.
-          Controls right now are <strong>Ctrl</strong>, <strong>Shift</strong>, <strong>Space</strong>,
-          and <strong>F</strong>.
-        </p>
-        <p>
-          Getting this much done and uploaded is a win just because now I know how to actually do it.
-          Future updates should be less of a wrestling match.
-        </p>
-        <p>
-          Next major goal is simple: make it an actual game instead of placeholder pieces.
-          Stop back by sometime. It might look pretty different.
-        </p>
-      </article>
+      <details class="news-archive">
+        <summary>Older posts</summary>
+
+        <article class="news-entry">
+          <div class="news-date">March 2026</div>
+          <p>
+            This started as a test environment, basically the digital equivalent of a napkin sketch.
+            Controls right now are <strong>Ctrl</strong>, <strong>Shift</strong>, <strong>Space</strong>,
+            and <strong>F</strong>.
+          </p>
+          <p>
+            Getting this much done and uploaded is a win just because now I know how to actually do it.
+            Future updates should be less of a wrestling match.
+          </p>
+          <p>
+            Next major goal is simple: make it an actual game instead of placeholder pieces.
+            Stop back by sometime. It might look pretty different.
+          </p>
+        </article>
+      </details>
     </section>
 
     <section id="contact">
