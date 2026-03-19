@@ -28,6 +28,7 @@
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -152,12 +153,6 @@
       border: 1px solid rgba(255,255,255,.08);
     }
 
-    .feature-card h3 {
-      margin: 0 0 10px;
-      font-size: 1.5rem;
-      line-height: 1.15;
-    }
-
     .feature-card p {
       margin: 0 0 16px;
       color: var(--muted);
@@ -247,11 +242,18 @@
     }
 
     .donation img {
-      max-width: 180px;
+      max-width: 110px;
       width: 100%;
       height: auto;
       display: inline-block;
       border-radius: 10px;
+      opacity: 0.9;
+      transition: transform .15s ease, opacity .15s ease;
+    }
+
+    .donation img:hover {
+      transform: scale(1.05);
+      opacity: 1;
     }
 
     footer {
@@ -361,7 +363,6 @@
   <div class="wrap">
     <header>
       <nav>
-        <a href="#top">Top</a>
         <a href="#news">News</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -378,9 +379,8 @@
       <div class="feature">
         <div class="feature-card">
           <div class="feature-label">Featured Project</div>
-          <h3>I had a dream about you</h3>
-          <p>Current playable test environment. Best on desktop or laptop.</p>
-          <a class="feature-link" href="https://amdi218.com/games">Launch the game</a>
+          <p>Playable test environment. Best on desktop or laptop.</p>
+          <a class="feature-link" href="https://amdi218.com/games">Launch</a>
         </div>
       </div>
 
